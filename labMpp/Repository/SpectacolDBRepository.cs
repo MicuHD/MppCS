@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace labMpp.Repository
 {
-    class SpectacolDBRepository : IRepository<Spectacol, int>
+    public class SpectacolDBRepository : IRepository<Spectacol, int>
     {
 
         public void delete(int id)
@@ -34,7 +34,7 @@ namespace labMpp.Repository
             IList<Spectacol> spectacolsR = new List<Spectacol>();
             using (var comm = con.CreateCommand())
             {
-                comm.CommandText = "select id,nume,descriere from Spectacol";
+                comm.CommandText = "select id,locatie,disponibile,vandute,artist,data,ora from Spectacol";
 
                 using (var dataR = comm.ExecuteReader())
                 {
@@ -44,9 +44,12 @@ namespace labMpp.Repository
                         String locatie = dataR.GetString(1);
                         int disp = dataR.GetInt32(2);
                         int sold = dataR.GetInt32(3);
-                        int idart = dataR.GetInt32(4);
+                        String art = dataR.GetString(4);
+                        String data = dataR.GetString(5);
+                        String ora = dataR.GetString(6);
 
-                        Spectacol spectacol = new Spectacol(idO, locatie, disp, sold, idart);
+
+                        Spectacol spectacol = new Spectacol(idO, locatie, disp, sold, art,data,ora);
                         spectacolsR.Add(spectacol);
                     }
                 }
@@ -61,7 +64,7 @@ namespace labMpp.Repository
 
             using (var comm = con.CreateCommand())
             {
-                comm.CommandText = "select Id,locatie,disponibile,vandute,idartist from Spectacol where Id=@id";
+                comm.CommandText = "select id,locatie,disponibile,vandute,artist,data,ora from Spectacol where id=@id";
                 IDbDataParameter paramId = comm.CreateParameter();
                 paramId.ParameterName = "@id";
                 paramId.Value = id;
@@ -74,10 +77,13 @@ namespace labMpp.Repository
                         int idO = dataR.GetInt32(0);
                         String locatie = dataR.GetString(1);
                         int disp = dataR.GetInt32(2);
-                        int sold= dataR.GetInt32(3);
-                        int idart = dataR.GetInt32(4);
+                        int sold = dataR.GetInt32(3);
+                        String art = dataR.GetString(4);
+                        String data = dataR.GetString(5);
+                        String ora = dataR.GetString(6);
 
-                        Spectacol spectacol = new Spectacol(idO,locatie,disp,sold,idart);
+
+                        Spectacol spectacol = new Spectacol(idO, locatie, disp, sold, art, data, ora);
                         return spectacol;
                     }
                 }
@@ -111,7 +117,7 @@ namespace labMpp.Repository
 
                 var paramIdArt = comm.CreateParameter();
                 paramIdArt.ParameterName = "@idart";
-                paramIdArt.Value = entity.IdArtist;
+                paramIdArt.Value = entity.Artist;
                 comm.Parameters.Add(paramIdArt);
 
                 var result = comm.ExecuteNonQuery();
@@ -147,7 +153,7 @@ namespace labMpp.Repository
 
             using (var comm = con.CreateCommand())
             {
-                comm.CommandText = "UPDATE Spectacol SET Locatie = @loc,Disponibile=@disp,vandute=@vand,idartist=@idart WHERE Id = @id; ";
+                comm.CommandText = "UPDATE Spectacol SET Locatie = @loc,Disponibile=@disp,vandute=@vand,artist=@art, data=@data,ora = @ora WHERE Id = @id; ";
 
 
                 var paramId = comm.CreateParameter();
@@ -171,9 +177,20 @@ namespace labMpp.Repository
                 comm.Parameters.Add(paramVand);
 
                 var paramIdArt = comm.CreateParameter();
-                paramIdArt.ParameterName = "@idart";
-                paramIdArt.Value = entity.IdArtist;
+                paramIdArt.ParameterName = "@art";
+                paramIdArt.Value = entity.Artist;
                 comm.Parameters.Add(paramIdArt);
+
+                var paramIdOra = comm.CreateParameter();
+                paramIdOra.ParameterName = "@ora";
+                paramIdOra.Value = entity.Ora;
+                comm.Parameters.Add(paramIdOra);
+
+                var paramIdData = comm.CreateParameter();
+                paramIdData.ParameterName = "@data";
+                paramIdData.Value = entity.Data;
+                comm.Parameters.Add(paramIdData);
+
 
                 var result = comm.ExecuteNonQuery();
                 if (result == 0)

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace labMpp.Repository
 {
-    class PersonalDBRepository : IRepository<Personal, int>
+    class PersonalDBRepository : IRepositoryLog<Personal, int>
     {
 
         public void delete(int id)
@@ -81,6 +81,37 @@ namespace labMpp.Repository
                 }
             }
             return null;
+        }
+
+        public int login(string user, string pass)
+        {
+            IDbConnection con = DBUtils.getConnection();
+
+            using (var comm = con.CreateCommand())
+            {
+                comm.CommandText = "select count(*) as [SIZE] FROM Personal where username=@user and parola = @pass";
+                IDbDataParameter paramUser = comm.CreateParameter();
+                paramUser.ParameterName = "@user";
+                paramUser.Value = user;
+                comm.Parameters.Add(paramUser);
+                IDbDataParameter paramPass = comm.CreateParameter();
+                paramPass.ParameterName = "@pass";
+                paramPass.Value = pass;
+                comm.Parameters.Add(paramPass);
+
+
+
+                using (var dataR = comm.ExecuteReader())
+                {
+                    if (dataR.Read())
+                    {
+                        int idO = dataR.GetInt32(0);
+                        if (idO.Equals(1))
+                            return idO;
+                    }
+                }
+            }
+            return -1;
         }
 
         public void save(Personal entity)

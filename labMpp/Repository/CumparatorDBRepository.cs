@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace labMpp.Repository
 {
-    class CumparatorDBRepository : IRepository<Cumparator, int>
+    public class CumparatorDBRepository : IRepository<Cumparator, int>
     {
 
         public void delete(int id)

@@ -30,17 +30,31 @@ namespace labMpp.Service
 
         public List<Spectacol> cautare(string data)
         {
-            throw new NotImplementedException();
+            List<Spectacol> rez = new List<Spectacol>();
+            foreach(var spec in repoSpectacol.findAll())
+            {
+                if (spec.Data.Equals(data))
+                {
+                    rez.Add(spec);
+                }
+            }
+            return rez;
         }
 
         public bool cumparare(Spectacol spec, string nume, int nrbilete)
         {
-            throw new NotImplementedException();
+            Spectacol nspec = spec;
+            nspec.Disponibile = nspec.Disponibile - nrbilete;
+            nspec.Vandute = nspec.Vandute + nrbilete;
+            repoSpectacol.update(nspec.Id, nspec);
+            repoCumparator.save(new Cumparator(nume, nrbilete, spec.Id));
+            notifyObservers();
+            return true;
         }
 
         public List<Spectacol> getSpecacol()
         {
-            throw new NotImplementedException();
+            return (List<Spectacol>)repoSpectacol.findAll();
         }
 
         public void notifyObservers()
@@ -54,6 +68,11 @@ namespace labMpp.Service
         public void removeObserver(Utils.IObserver<Spectacol> o)
         {
             observers.Remove(o);
+        }
+
+        public Spectacol findSpectacol(int id)
+        {
+            return repoSpectacol.findOne(id);
         }
     }
 }

@@ -15,5 +15,7 @@ namespace labMpp.Service
         bool cumparare(Spectacol spec, string nume, int nrbilete);
 
         List<Spectacol> cautare(string data);
+
+        Spectacol findSpectacol(int id);
     }
 }

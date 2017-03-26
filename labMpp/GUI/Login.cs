@@ -1,4 +1,5 @@
 ﻿using labMpp.Domain;
+using labMpp.GUI;
 using labMpp.Repository;
 using labMpp.Service;
 using Project.Repository;
@@ -55,8 +56,13 @@ namespace labMpp
             }
             else
             {
-                MessageBox.Show("Totul e ok");
+                MeniuView meniu = new MeniuView();
+                meniu.Show();
+                var serv = new CommandService(new SpectacolDBRepository(), new CumparatorDBRepository());
+                serv.addObserver(meniu);
+                meniu.setService(serv);
 
+                this.Hide();
 
             }
         }

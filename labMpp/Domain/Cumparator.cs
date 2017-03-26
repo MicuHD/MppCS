@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace labMpp.Domain
 {
-    class Cumparator : IHasID<int>
+    public class Cumparator : IHasID<int>
     {
         public int Id { get; set; }
 
@@ -29,8 +29,8 @@ namespace labMpp.Domain
             IdSpectacol = idSpectacol;
         }
 
-        public int Bilete;
-        public int IdSpectacol;
+        public int Bilete { get; set; }
+        public int IdSpectacol { get; set; }
 
 
     }
