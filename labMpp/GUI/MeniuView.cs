@@ -92,6 +92,7 @@ namespace labMpp.GUI
             cautaText.Text = "";
             cautaTable.DataSource = null;
             setColor(Tabel.CautareTabel);
+            setColor(Tabel.SpectacolTabel);
         }
 
         private void logoutBtn_Click(object sender, EventArgs e)
