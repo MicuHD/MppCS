@@ -1,5 +1,4 @@
-﻿using labMpp.Domain;
-using labMpp.Utils;
+﻿using labMpp.Utils;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace labMpp.Service
 {
-    interface IComandService : IObservable<Spectacol>
+    interface IComandService
     {
 
-        List<Spectacol> getSpecacol();
+        //List<Spectacol> getSpecacol();
 
-        bool cumparare(Spectacol spec, string nume, int nrbilete);
+        //bool cumparare(Spectacol spec, string nume, int nrbilete);
 
-        List<Spectacol> cautare(string data);
+        //List<Spectacol> cautare(string data);
 
-        Spectacol findSpectacol(int id);
+        //Spectacol findSpectacol(int id);
     }
 }
