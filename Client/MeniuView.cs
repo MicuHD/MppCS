@@ -26,6 +26,7 @@ namespace Client
         public MeniuView(ClientCtrl ctrl)
         {
             this.ctrl = ctrl;
+            ctrl.updateEvent += userUpdate;
             InitializeComponent();
             Initialize();
         }
@@ -197,8 +198,13 @@ namespace Client
                         source[i] = spec;
                     }
                 }
+                IList<Spectacol> specs = new List<Spectacol>();
+                foreach(Spectacol sp in source)
+                {
+                    specs.Add(sp);
+                }
                 Console.WriteLine("SoldTicket ");
-                spectacolTable.BeginInvoke(new UpdateDataGridViewCallBack(this.updateListBox), new Object[] { spectacolTable, (IList<Spectacol>)source });
+                spectacolTable.BeginInvoke(new UpdateDataGridViewCallBack(this.updateListBox), new Object[] { spectacolTable, specs });
             }
 
         }
@@ -207,7 +213,12 @@ namespace Client
         private void updateListBox(DataGridView gridView, IList<Spectacol> newData)
         {
             gridView.DataSource = null;
+            var bindingList = new BindingList<Spectacol>(newData);
+            source = new BindingSource(bindingList, null);
+            spectacolTable.DataSource = source;
+            spectacolTable.Columns[0].Visible = false;
             gridView.DataSource = newData;
+            cautaTable.DataSource = null;
             Console.Out.WriteLine("This is called");
         }
 

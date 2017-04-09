@@ -70,9 +70,9 @@ namespace Client
 
         public void TicketSold(Spectacol spec)
         {
+            Console.Out.WriteLine("Intra in sold ticket");
             UserEventArgs userArgs = new UserEventArgs(UserEvent.SoldTicket, spec);
             OnUserEvent(userArgs);
-
         }
 
         protected virtual void OnUserEvent(UserEventArgs e)
