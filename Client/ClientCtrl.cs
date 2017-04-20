@@ -10,7 +10,7 @@ namespace Client
 {
     
 
-    public class ClientCtrl : ISClient
+    public class ClientCtrl : MarshalByRefObject, ISClient
     {
 
         public event EventHandler<UserEventArgs> updateEvent; //ctrl calls it when it has received an update

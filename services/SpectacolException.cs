@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace services
 {
+    [Serializable]
     public class SpectacolException : Exception
     {
         public SpectacolException():base() { }

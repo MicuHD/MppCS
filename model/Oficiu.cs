@@ -3,6 +3,7 @@
 
 namespace model
 {
+    [Serializable]
     public class Oficiu : IHasID<int>
     {
         public int Id { get; set; }

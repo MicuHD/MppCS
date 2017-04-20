@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace model
 {
+    [Serializable]
     public class Cumparator : IHasID<int>
     {
         public int Id { get; set; }

@@ -8,7 +8,7 @@ using model;
 
 namespace server
 {
-    public class ServerImpl: ISServer
+    public class ServerImpl: MarshalByRefObject, ISServer
     {
         private PersonalDBRepository persRepo;
         private SpectacolDBRepository specRepo;

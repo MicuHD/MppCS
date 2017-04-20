@@ -2,6 +2,7 @@
 
 namespace model
 {
+    [Serializable]
     public class Spectacol : IHasID<int>
     {
         public int Id { get; set; }
