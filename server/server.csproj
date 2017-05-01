@@ -94,10 +94,6 @@
       <Project>{F0FEEDD3-6875-4896-BE57-4219F35A4397}</Project>
       <Name>model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\networking\networking.csproj">
-      <Project>{56AC09B7-F0DF-49F4-B2EE-6B468AFC1172}</Project>
-      <Name>networking</Name>
-    </ProjectReference>
     <ProjectReference Include="..\persistance\persistance.csproj">
       <Project>{52C6F9FC-71CA-42DB-9651-BF7EF268EA14}</Project>
       <Name>persistance</Name>

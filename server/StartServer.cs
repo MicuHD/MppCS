@@ -8,11 +8,9 @@ using System.Runtime.Remoting.Channels.Tcp;
 
 namespace server
 {
-    using ServerTemplate;
     using server;
     using persistance;
     using services;
-    using networking;
     using System.Collections;
 
     class StartServer

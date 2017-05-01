@@ -96,10 +96,6 @@
       <Project>{F0FEEDD3-6875-4896-BE57-4219F35A4397}</Project>
       <Name>model</Name>
     </ProjectReference>
-    <ProjectReference Include="..\networking\networking.csproj">
-      <Project>{56AC09B7-F0DF-49F4-B2EE-6B468AFC1172}</Project>
-      <Name>networking</Name>
-    </ProjectReference>
     <ProjectReference Include="..\services\services.csproj">
       <Project>{CA533352-0ABE-4A36-837E-F983F82DB061}</Project>
       <Name>services</Name>
