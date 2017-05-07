@@ -22,7 +22,7 @@ namespace server
             ISServer serviceImpl = new ServerImpl(userRepo,specRepo,cumpRepo);
 
             // IChatServer serviceImpl = new ChatServerImpl();
-            SerialChatServer server = new SerialChatServer("127.0.0.1", 55555, serviceImpl);
+            SerialChatServer server = new SerialChatServer("127.0.0.1", 55556, serviceImpl);
             server.Start();
             Console.WriteLine("Server started ...");
             //Console.WriteLine("Press <enter> to exit...");

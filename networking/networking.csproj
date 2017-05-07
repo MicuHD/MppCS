@@ -48,6 +48,7 @@
   <ItemGroup>
     <Compile Include="ClientObjectWorker.cs" />
     <Compile Include="CumparatorDTO.cs" />
+    <Compile Include="StringRequestProtocol.cs" />
     <Compile Include="SpectacolDTO.cs" />
     <Compile Include="ServerObjectProxy.cs" />
     <Compile Include="DTOUtils.cs" />
